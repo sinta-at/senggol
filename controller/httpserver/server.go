@@ -7,4 +7,7 @@ import (
 )
 
 func StartServer(port string, services service.Services) {
+	router := makeRouter(services)
+
+	log.Fatal(http.ListenAndServe(":" + port, router))
 }
