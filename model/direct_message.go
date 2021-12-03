@@ -1,4 +1,4 @@
-package modelpackage model
+package model
 
 import (
 	"time"
