@@ -31,5 +31,5 @@ type CreateDirectMessage interface {
 }
 
 type UpdateDirectMessageSeenAt interface {
-	UpdateDirectMessageSeenAt(id int, seenAt time.Time) error
+	UpdateDirectMessageSeenAt(messageID int, seenAt time.Time) error
 }
