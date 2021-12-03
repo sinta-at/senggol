@@ -14,11 +14,11 @@ type DirectMessage struct {
 }
 
 type PeerDirectMessage struct {
-	ID             int
-	PeerID         int
-	MessageID      int
-	MessageContent string
-	Direction      string
-	SeenAt         *time.Time
-	CreatedAt      time.Time
+	ID             int        `json:"id"`
+	PeerID         int        `json:"peer_id"`
+	MessageID      int        `json:"message_id"`
+	MessageContent string     `json:"message_content"`
+	Direction      string     `json:"direction"`
+	SeenAt         *time.Time `json:"seen_at,omitempty"`
+	CreatedAt      time.Time  `json:"created_at"`
 }
