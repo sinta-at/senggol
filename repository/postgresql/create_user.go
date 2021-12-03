@@ -9,6 +9,6 @@ type CreateUserRepository struct {
 	db *sql.DB
 }
 
-func (repo CreateUserRepository) CreateUser(model.User) err {
+func (repo CreateUserRepository) CreateUser(model.User) error {
 	return nil
 }

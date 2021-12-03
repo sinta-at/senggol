@@ -4,13 +4,14 @@ import (
 	"database/sql"
 	"fmt"
 	"senggol/repository"
+	"time"
 
 	_ "github.com/lib/pq"
 )
 
 type PostgresqlRepositories struct {
 	CreateUser                repository.CreateUser
-	GetUserByID               repository.GetUserByID
+	GetUserByUsername         repository.GetUserByUsername
 	GetPeers                  repository.GetPeers
 	GetPeersCount             repository.GetPeersCount
 	GetPeerDirectMessages     repository.GetPeerDirectMessages
@@ -32,7 +33,7 @@ func GetRepositories(host, port, user, dbname, password, sslmode string) (Postgr
 
 	return PostgresqlRepositories{
 		CreateUser:                CreateUserRepository{db},
-		GetUserByID:               GetUserByIDRepository{db},
+		GetUserByUsername:         GetUserByUsernameRepository{db},
 	    GetPeers:                  GetPeersRepository{db},
 	    GetPeersCount:             GetPeersCountRepository{db},
 	    GetPeerDirectMessages:     GetPeerDirectMessagesRepository{db},

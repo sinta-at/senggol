@@ -2,13 +2,13 @@ package postgresql
 
 import (
 	"database/sql"
-	"senggol/model"
+	"time"
 )
 
 type UpdateDirectMessageSeenAtRepository struct {
 	db *sql.DB
 }
 
-func (repo UpdateDirectMessageSeenAtRepository) UpdateDirectMessageSeenAt(id int, seenAt time.Time) err
+func (repo UpdateDirectMessageSeenAtRepository) UpdateDirectMessageSeenAt(id int, seenAt time.Time) error {
 	return nil
 }

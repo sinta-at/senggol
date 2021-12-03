@@ -9,6 +9,6 @@ type GetPeerDirectMessagesRepository struct {
 	db *sql.DB
 }
 
-func (repo GetPeerDirectMessagesRepository) GetPeerDirectMessages(id, prev, limit int) ([]model.DirectMessageWithContent, err) {
+func (repo GetPeerDirectMessagesRepository) GetPeerDirectMessages(id, prev, limit int) ([]model.DirectMessageWithContent, error) {
 	return []model.DirectMessageWithContent{}, nil
 }
