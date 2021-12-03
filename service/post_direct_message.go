@@ -4,8 +4,8 @@ import (
 	"senggol/view"
 )
 
-type PostDirectMessagesService struct{}
+type PostDirectMessageService struct{}
 
-func (svc PostDirectMessagesService) PostDirectMessages(request view.PostDirectMessagesRequest) *view.ErrorResponse {
+func (svc PostDirectMessageService) PostDirectMessage(request view.PostDirectMessageRequest) *view.ErrorResponse {
 	return nil
 }
