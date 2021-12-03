@@ -1,6 +1,7 @@
 package postgresql
 
 import (
+	"fmt"
 	"database/sql"
 	"senggol/model"
 )
@@ -21,14 +22,18 @@ func (repo GetPeerDirectMessagesRepository) GetPeerDirectMessages(userID, peerID
 	FROM direct_messages
 	JOIN messages ON messages.id = direct_messages.message_id
 	WHERE direct_messages.user_id = $1
-	AND direct_messages.peer_id = $2
-	AND direct_messages.id < $3
+	AND direct_messages.peer_id = $2 %s
 	ORDER by messages.created_at DESC
-	LIMIT $4;`
+	LIMIT $3;`
+
+	cursorFilter := ""
+	if prev > 0 {
+		cursorFilter = fmt.Sprintf("AND direct_messages.id < %v", prev)
+	}
 
 	peerDirectMessages := []model.PeerDirectMessage{}
 
-	rows, err := repo.db.Query(dql, userID, peerID, prev, limit)
+	rows, err := repo.db.Query(fmt.Sprintf(dql, cursorFilter), userID, peerID, limit)
 	if err != nil {
 		return peerDirectMessages, err
 	}

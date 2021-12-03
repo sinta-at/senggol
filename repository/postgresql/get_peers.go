@@ -46,7 +46,7 @@ func (repo GetPeersRepository) GetPeers(userID, limit, offset int) ([]model.Peer
 	LEFT JOIN peer_latest_messages ON users.id = peer_latest_messages.peer_id
 	LEFT JOIN peer_unseen_messages ON users.id = peer_unseen_messages.peer_id
 	WHERE users.id != $1
-	ORDER BY peer_latest_messages.created_at DESC
+	ORDER BY peer_latest_messages.created_at DESC NULLS LAST
 	LIMIT $2 OFFSET $3;`
 
 	peers := []model.Peer{}
