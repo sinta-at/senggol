@@ -10,5 +10,12 @@ type UpdateDirectMessageSeenAtRepository struct {
 }
 
 func (repo UpdateDirectMessageSeenAtRepository) UpdateDirectMessageSeenAt(messageID int, seenAt time.Time) error {
+	dml := `UPDATE direct_message
+		SET seen_at = $1
+	WHERE message_id = $2`
+	
+	if _, err := repo.db.Exec(dml, seenAt, messageID); err != nil {
+		return err
+	}
 	return nil
 }

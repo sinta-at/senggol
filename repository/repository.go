@@ -7,7 +7,7 @@ import (
 )
 
 type CreateUser interface {
-	CreateUser(model.User) error
+	CreateUser(user model.User) error
 }
 
 type GetUserByUsername interface {
@@ -15,11 +15,11 @@ type GetUserByUsername interface {
 }
 
 type GetPeers interface {
-	GetPeers(id, limit, offset int) ([]model.Peer, error)
+	GetPeers(userID, limit, offset int) ([]model.Peer, error)
 }
 
 type GetPeersCount interface {
-	GetPeersCount(id int) (int, error)
+	GetPeersCount(userID int) (int, error)
 }
 
 type GetPeerDirectMessages interface {
