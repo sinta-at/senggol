@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"senggol/enum"
 	"senggol/pkg"
 	"senggol/repository"
 	"senggol/view"
@@ -19,7 +20,7 @@ func (svc GetAuthenticatedUserService) GetAuthenticatedUser(request view.GetAuth
 	user, err := svc.getUserByUsernameRepository.GetUserByUsername(request.Username)
 	if err != nil {
 		return view.GetAuthenticatedUserResponse{}, &view.ErrorResponse{
-			Code:     "FAILED_AUTHENTICATION",
+			Code:     enum.FailedAuthentication,
 			Location: "service",
 			Reason:   fmt.Sprintf("username or password is incorrect"),
 		}
@@ -28,7 +29,7 @@ func (svc GetAuthenticatedUserService) GetAuthenticatedUser(request view.GetAuth
 	err = pkg.ValidateCredentials(request.Password, user.Password)
 	if err != nil {
 		return view.GetAuthenticatedUserResponse{}, &view.ErrorResponse{
-			Code:     "FAILED_AUTHENTICATION",
+			Code:     enum.FailedAuthentication,
 			Location: "service",
 			Reason:   fmt.Sprintf("username or password is incorrect"),
 		}

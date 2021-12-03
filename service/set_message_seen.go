@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"senggol/enum"
 	"senggol/repository"
 	"senggol/view"
 	"time"
@@ -19,7 +20,7 @@ func (svc SetMessageSeenService) SetMessageSeen(request view.SetMessageSeenReque
 	err := svc.updateDirectMessageSeenAtRepository.UpdateDirectMessageSeenAt(request.MessageID, time.Now())
 	if err != nil {
 		return &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "repository",
 			Reason:   fmt.Sprintf("failed to update direct message viewing status - %s", err.Error()),
 		}

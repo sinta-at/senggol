@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"math"
+	"senggol/enum"
 	"senggol/repository"
 	"senggol/view"
 )
@@ -22,7 +23,7 @@ func (svc GetPeersService) GetPeers(request view.GetPeersRequest) (view.GetPeers
 	peers, err := svc.getPeers.GetPeers(request.UserID, limit, offset)
 	if err != nil {
 		return view.GetPeersResponse{}, &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "repository",
 			Reason:   fmt.Sprintf("failed to get peers - %s", err.Error()),
 		}
@@ -31,7 +32,7 @@ func (svc GetPeersService) GetPeers(request view.GetPeersRequest) (view.GetPeers
 	total, err := svc.getPeersCount.GetPeersCount(request.UserID)
 	if err != nil {
 		return view.GetPeersResponse{}, &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "repository",
 			Reason:   fmt.Sprintf("failed to get peers count - %s", err.Error()),
 		}

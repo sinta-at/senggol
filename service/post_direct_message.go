@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"senggol/enum"
 	"senggol/model"
 	"senggol/repository"
 	"senggol/pkg"
@@ -48,7 +49,7 @@ func (svc PostDirectMessageService) PostDirectMessage(request view.PostDirectMes
 	err := svc.createDirectMessageRepository.CreateDirectMessage(message, inboundDirectMessage, outboundDirectMessage)
 	if err != nil {
 		return &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "repository",
 			Reason:   fmt.Sprintf("failed to create direct message - %s", err.Error()),
 		}

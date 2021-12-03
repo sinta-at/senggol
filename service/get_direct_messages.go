@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"senggol/enum"
 	"senggol/repository"
 	"senggol/view"
 )
@@ -19,7 +20,7 @@ func (svc GetDirectMessagesService) GetDirectMessages(request view.GetDirectMess
 		request.UserID, request.PeerID, request.Prev, request.Limit)
 	if err != nil {
 		return view.GetDirectMessagesResponse{}, &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "repository",
 			Reason:   fmt.Sprintf("failed to get peer direct messages - %s", err.Error()),
 		}

@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"senggol/enum"
 	"senggol/repository"
 	"senggol/model"
 	"senggol/pkg"
@@ -23,7 +24,7 @@ func (svc RegisterService) Register(request view.RegisterRequest) *view.ErrorRes
 	hashedPassword, err := pkg.GenerateCredentialsHash(request.Password)
 	if err != nil {
 		return &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "service",
 			Reason:   "failed to construct user information",
 		}
@@ -38,7 +39,7 @@ func (svc RegisterService) Register(request view.RegisterRequest) *view.ErrorRes
 	err = svc.createUserRepository.CreateUser(user)
 	if err != nil {
 		return &view.ErrorResponse{
-			Code:     "INTERNAL_SERVER_ERROR",
+			Code:     enum.InternalServerError,
 			Location: "repository",
 			Reason:   fmt.Sprintf("failed to create user - %s", err.Error()),
 		}

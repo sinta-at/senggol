@@ -1,7 +1,11 @@
 package view
 
+import (
+	"senggol/enum"
+)
+
 type ErrorResponse struct {
-	Code     string `json:"code"`
-	Location string `json:"location"`
-	Reason   string `json:"reason"`
+	Code     enum.ErrorCode `json:"code"`
+	Location string         `json:"location"`
+	Reason   string         `json:"reason"`
 }
