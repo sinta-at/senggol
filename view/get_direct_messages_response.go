@@ -1,14 +1,10 @@
 package view
 
-type GetDirectMessagesResponse struct {
-	Messages       []DirectMessage `json:"messages"`
-	CursorPosition int             `json:"cursor_position"`
-}
+import (
+	"senggol/model"
+)
 
-type DirectMessage struct {
-	ID        string `json:"id"`
-	Direction string `json:"direction"`
-	Content   string `json:"content"`
-	SeenAt    string `json:"seen_at"`
-	CreatedAt string `json:"created_at"`
+type GetDirectMessagesResponse struct {
+	Messages       []model.PeerDirectMessage `json:"messages"`
+	CursorPosition int                       `json:"cursor_position"`
 }
