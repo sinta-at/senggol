@@ -23,11 +23,11 @@ type GetPeersCount interface {
 }
 
 type GetPeerDirectMessages interface {
-	GetPeerDirectMessages(id, prev, limit int) ([]model.DirectMessageWithContent, error)
+	GetPeerDirectMessages(userID, peerID, prev, limit int) ([]model.PeerDirectMessage, error)
 }
 
 type CreateDirectMessage interface {
-	CreateDirectMessage(message model.Message, directMessage model.DirectMessage) error
+	CreateDirectMessage(message model.Message, inboundDirectMessage, outboundDirectMessage model.DirectMessage) error
 }
 
 type UpdateDirectMessageSeenAt interface {

@@ -9,6 +9,6 @@ type CreateDirectMessageRepository struct {
 	db *sql.DB
 }
 
-func (repo CreateDirectMessageRepository) CreateDirectMessage(message model.Message, directMessage model.DirectMessage) error {
+func (repo CreateDirectMessageRepository) CreateDirectMessage(message model.Message, inboundDirectMessage, outboundDirectMessage model.DirectMessage) error {
 	return nil
 }
